@@ -39,7 +39,9 @@ h1,h2{margin:0;letter-spacing:-.07em;line-height:.94;font-weight:600}h1{font-siz
 .mailerlite-form-shell button[type="submit"]{height:60px!important;min-width:240px!important;background:var(--ink)!important;border:1px solid var(--ink)!important;border-radius:0!important;color:white!important;padding:0 22px!important;font:600 14px Inter,Arial,sans-serif!important;cursor:pointer!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:20px!important}
 .mailerlite-form-shell button[type="submit"]:after{content:'↘';font-size:16px;font-weight:400}
 .mailerlite-form-shell button[type="submit"]:hover{background:#252620!important}
-.mailerlite-form-shell .ml-form-successBody{background:var(--ink)!important;color:white!important;padding:24px!important;text-align:left!important}
-.mailerlite-form-shell .ml-form-successBody h4,.mailerlite-form-shell .ml-form-successBody p{color:white!important;font-family:Inter,Arial,sans-serif!important}
+.mailerlite-form-shell .ml-form-successBody{background:#f9f9f5!important;color:var(--ink)!important;border:1px solid var(--ink)!important;border-radius:0!important;box-shadow:5px 5px 0 var(--ink)!important;padding:26px 28px 26px 76px!important;text-align:left!important;position:relative!important}
+.mailerlite-form-shell .ml-form-successBody:before{content:'✓';position:absolute;left:26px;top:27px;display:grid;place-items:center;width:30px;height:30px;background:var(--lime);border:1px solid var(--ink);border-radius:50%;color:var(--ink);font:700 15px Inter,Arial,sans-serif}
+.mailerlite-form-shell .ml-form-successBody h4{margin:0 0 7px!important;color:var(--ink)!important;font:600 18px/1.3 Inter,Arial,sans-serif!important;letter-spacing:-.03em!important}
+.mailerlite-form-shell .ml-form-successBody p{margin:0!important;color:#555750!important;font:400 14px/1.55 Inter,Arial,sans-serif!important}
 @media(max-width:760px){.mailerlite-form-shell .ml-form-embedBody form{grid-template-columns:minmax(0,1fr)!important;gap:10px}.mailerlite-form-shell input[type="email"]{border-right:1px solid var(--ink)!important}.mailerlite-form-shell button[type="submit"]{width:100%!important}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
