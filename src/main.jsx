@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { createRoot } from 'react-dom/client'
 import './styles.css'
 import demoGif from '../demo_.gif'
@@ -6,28 +6,42 @@ import demoGif from '../demo_.gif'
 const Arrow = () => <span aria-hidden="true">↘</span>
 
 function WaitlistForm() {
-  const [submitted, setSubmitted] = useState(false)
+  useEffect(() => {
+    window.ml = window.ml || function (...args) {
+      window.ml.q = window.ml.q || []
+      window.ml.q.push(args)
+    }
 
-  function submit(event) {
-    event.preventDefault()
-    setSubmitted(true)
-  }
+    if (!document.querySelector('script[data-mailerlite-universal]')) {
+      const script = document.createElement('script')
+      script.async = true
+      script.src = 'https://assets.mailerlite.com/js/universal.js'
+      script.dataset.mailerliteUniversal = 'true'
+      document.head.appendChild(script)
+    }
 
-  if (submitted) {
-    return (
-      <div className="success" role="status">
-        <span className="success-mark">✓</span>
-        <div><strong>Du är med.</strong><br />Vi hör av oss när vi har något värt att visa.</div>
-      </div>
-    )
-  }
+    window.ml('account', '2591581')
+
+    const embed = document.querySelector('.ml-embedded[data-form="nLLuyZ"]')
+    const localizeForm = () => {
+      const input = embed?.querySelector('input[type="email"]')
+      const button = embed?.querySelector('button[type="submit"]')
+      if (input) input.placeholder = 'Din e-postadress'
+      if (button && button.textContent.trim() !== 'Gå med i väntelistan') {
+        button.textContent = 'Gå med i väntelistan'
+      }
+    }
+    const observer = new MutationObserver(localizeForm)
+    if (embed) observer.observe(embed, { childList: true, subtree: true })
+    localizeForm()
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
-    <form className="waitlist-form" onSubmit={submit}>
-      <label className="sr-only" htmlFor="email">Din e-postadress</label>
-      <input id="email" name="email" type="email" autoComplete="email" placeholder="Din e-postadress" required />
-      <button type="submit">Gå med i väntelistan <Arrow /></button>
-    </form>
+    <div className="mailerlite-form-shell">
+      <div className="ml-embedded" data-form="nLLuyZ"></div>
+    </div>
   )
 }
 
