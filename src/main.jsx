@@ -26,9 +26,17 @@ function WaitlistForm() {
     const localizeForm = () => {
       const input = embed?.querySelector('input[type="email"]')
       const button = embed?.querySelector('button[type="submit"]')
+      const successTitle = embed?.querySelector('.ml-form-successBody h4')
+      const successText = embed?.querySelector('.ml-form-successBody p')
       if (input) input.placeholder = 'Din e-postadress'
       if (button && button.textContent.trim() !== 'Gå med i väntelistan') {
         button.textContent = 'Gå med i väntelistan'
+      }
+      if (successTitle && successTitle.textContent.trim() !== 'Du är med.') {
+        successTitle.textContent = 'Du är med.'
+      }
+      if (successText && successText.textContent.trim() !== 'Tack för ditt intresse. Vi hör av oss när vi har något värt att visa.') {
+        successText.textContent = 'Tack för ditt intresse. Vi hör av oss när vi har något värt att visa.'
       }
     }
     const observer = new MutationObserver(localizeForm)
